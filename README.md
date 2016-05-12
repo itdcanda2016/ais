@@ -6,12 +6,16 @@ It uses these frameworks.
 
 - [Node.js](http://nodejs.org/).
 for base of backend
+Verion 4.4.3
 - [Express.js](http://expressjs.com/)
 for making web application
+Version 4.13.1
 - [Sequelize](http://docs.sequelizejs.com/en/latest/).
 for ORM
+Version 3.23.0
 - [Gulp](http://gulpjs.com/)
 for making task
+Version 3.9.1
 
 ## Make sure
 You should change Username / Password of Postgres.
