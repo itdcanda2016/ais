@@ -1,14 +1,15 @@
 var gulp = require('gulp');
+var config = require(__dirname + '/config/config.json')[env];
 
 gulp.task('createDatabase', function() {
   var Sequelize = require('sequelize');
   var pg = require('pg');
   var env = process.env.NODE_ENV || 'development';
 
-  var dbName = "ais_database_" + env;
-  var username = "postgres";
-  var password = "postgres";
-  var host = "localhost";
+  var dbName = config.database;
+  var username = config.username;
+  var password = config.password;
+  var host = config.host;
 
   var conStringPri = 'postgres://' + username + ':' + password + '@' + host + '/postgres';
   var conStringPost = 'postgres://' + username + ':' + password + '@' + host + '/' + dbName;
