@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <title>ITD Canada Students</title>
+    <link href="../../../stylesheets/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Update Course</h1>
+      <div class="row">
+        <div class="span6 offset3">
+          <form accept-charset="UTF-8" action="/admin/courses/<%= course.id %>" class="edit_course" id="edit_course_<%= course.id %>" method="post">
+            <div class="field">
+              <label for="course_name">Name</label>
+              <input id="course_name" name="name" type="text" value="<%= course.name %>" />
+            </div>
+            <div class="field">
+              <label for="course_length">Length</label>
+              <input id="course_length" name="length" type="text" value="<%= course.length %>" />
+            </div>
+            <div class="field">
+              <label for="course_started_date">Started Date</label>
+              <input id="course_started_date" name="started_date" type="text" value="<%= course.started_date %>" />
+            </div>
+            <div class="field">
+              <label for="course_ended_date">Ended Date</label>
+              <input id="course_ended_date" name="ended_date" type="text" value="<%= course.ended_date %>" />
+            </div>
+            <input class="btn btn-large btn-primary" name="commit" type="submit" value="Save changes" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

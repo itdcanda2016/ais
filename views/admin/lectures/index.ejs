@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <title>ITD Canada Students</title>
+    <link href="../../stylesheets/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <aside class="span4">
+          <section>
+            <h1>Lectures</h1>
+            <a class="btn btn-info" method="get" href="/admin/lectures/new" rel="nofollow">
+              New
+            </a>
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Started Date</th>
+                  <th>Ended Date</th>
+                  <th>Teacher Name</th>
+                  <th>Description</th>
+                  <th>Course ID</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% lectures.forEach(function(lecture) { %>
+                  <tr>
+                    <td><%= lecture.id %></td>
+                    <td><%= lecture.name %></td>
+                    <td><%= lecture.started_date %></td>
+                    <td><%= lecture.ended_date %></td>
+                    <td><%= lecture.teacher_name %></td>
+                    <td><%= lecture.description %></td>
+                    <td><%= lecture.course_id %></td>
+                    <td>
+                      <a href="/admin/lectures/<%= lecture.id %>/edit">
+                        Edit
+                      </a>
+                    </td>
+                    <td>
+                      <a class="btn btn-danger" method="delete" href="/admin/lectures/<%= lecture.id %>" rel="nofollow">
+                        Delete
+                      </a>
+                    </td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </body>
+</html>

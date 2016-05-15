@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <title>ITD Canada Students</title>
+    <link href="../../stylesheets/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create Lecture</h1>
+      <div class="row">
+        <div class="span6 offset3">
+          <form accept-charset="UTF-8" action="/admin/lectures" class="new_lecture" id="new_lecture" method="post">
+            <div class="field">
+              <label for="lecture_name">Name</label>
+              <input id="lecture_name" name="name" type="text" />
+            </div>
+            <div class="field">
+              <label for="lecture_started_date">Started Date</label>
+              <input id="lecture_started_date" name="started_date" type="text" />
+            </div>
+            <div class="field">
+              <label for="lecture_ended_date">Ended Date</label>
+              <input id="lecture_ended_date" name="ended_date" type="text" />
+            </div>
+            <div class="field">
+              <label for="lecture_teacher_name">Teacher Name</label>
+              <input id="lecture_teacher_name" name="teacher_name" type="text" />
+            </div>
+            <div class="field">
+              <label for="lecture_description">Description</label>
+              <input id="lecture_description" name="description" type="text" />
+            </div>
+            <div class="field">
+              <label for="lecture_course_id">Course ID</label>
+              <input id="lecture_course_id" name="course_id" type="text" />
+            </div>
+            <input class="btn btn-large btn-primary" name="commit" type="submit" value="Create New Lecture" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

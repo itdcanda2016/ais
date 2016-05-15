@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <title>ITD Canada Students</title>
+    <link href="../../stylesheets/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create Comment</h1>
+      <div class="row">
+        <div class="span6 offset3">
+          <form accept-charset="UTF-8" action="/admin/comments" class="new_comment" id="new_comment" method="post">
+            <div class="field">
+              <label for="comment_user_id">User ID</label>
+              <input id="comment_user_id" name="user_id" type="text" />
+            </div>
+            <div class="field">
+              <label for="comment_course_id">Course ID</label>
+              <input id="comment_course_id" name="course_id" type="text" />
+            </div>
+            <div class="field">
+              <label for="comment_class_id">Class ID</label>
+              <input id="comment_class_id" name="class_id" type="text" />
+            </div>
+            <div class="field">
+              <label for="comment_content">Content</label>
+              <input id="comment_content" name="content" type="text" />
+            </div>
+            <div class="field">
+              <label for="comment_related_comment_id">Related Comment ID</label>
+              <input id="comment_related_comment_id" name="related_comment_id" type="text" />
+            </div>
+            <input class="btn btn-large btn-primary" name="commit" type="submit" value="Create New Comment" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

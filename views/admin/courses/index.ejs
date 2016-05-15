@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <title>ITD Canada Students</title>
+    <link href="../../stylesheets/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <aside class="span4">
+          <section>
+            <h1>Courses</h1>
+            <a class="btn btn-info" method="get" href="/admin/courses/new" rel="nofollow">
+              New
+            </a>
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Length</th>
+                  <th>Started date</th>
+                  <th>Ended Date</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% courses.forEach(function(course) { %>
+                  <tr>
+                    <td><%= course.id %></td>
+                    <td><%= course.name %></td>
+                    <td><%= course.length %></td>
+                    <td><%= course.started_date %></td>
+                    <td><%= course.ended_date %></td>
+                    <td>
+                      <a href="/admin/courses/<%= course.id %>/edit">
+                        Edit
+                      </a>
+                    </td>
+                    <td>
+                      <a class="btn btn-danger" method="delete" href="/admin/courses/<%= course.id %>" rel="nofollow">
+                        Delete
+                      </a>
+                    </td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </body>
+</html>

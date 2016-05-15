@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <title>ITD Canada Students</title>
+    <link href="../../stylesheets/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create User</h1>
+      <div class="row">
+        <div class="span6 offset3">
+          <form accept-charset="UTF-8" action="/admin/users" class="new_user" id="new_user" method="post">
+            <div class="field">
+              <label for="user_first_name">First Name</label>
+              <input id="user_first_name" name="first_name" type="text" />
+            </div>
+            <div class="field">
+              <label for="user_last_name">Last Name</label>
+              <input id="user_last_name" name="last_name" type="text" />
+            </div>
+            <div class="field">
+              <label for="user_email">Email</label>
+              <input id="user_email" name="email" type="text" />
+            </div>
+            <div class="field">
+              <label for="user_password">Password</label>
+              <input id="user_password" name="password" type="text" />
+            </div>
+            <div class="field">
+              <label for="user_profile_image_url">Profile Image URL</label>
+              <input id="user_profile_image_url" name="profile_image_url" type="text" />
+            </div>
+            <div class="field">
+              <label for="user_entered_date">Enterd Date</label>
+              <input id="user_entered_date" name="entered_date" type="text" />
+            </div>
+            <div class="field">
+              <label for="user_course_type">Course Type</label>
+              <input id="user_course_type" name="course_type" type="text" />
+            </div>
+            <input class="btn btn-large btn-primary" name="commit" type="submit" value="Create New User" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -5,12 +5,21 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// main routes
 var routes = require('./routes/index');
 var comments = require('./routes/comments');
 var courses = require('./routes/courses');
 var lectures = require('./routes/lectures');
 var products = require('./routes/products');
 var users = require('./routes/users');
+
+// admin routes
+// var admin = require('./routes/admin');
+var adminComments = require('./routes/admin/comments');
+var adminCourses = require('./routes/admin/courses');
+var adminLectures = require('./routes/admin/lectures');
+var adminProducts = require('./routes/admin/products');
+var adminUsers = require('./routes/admin/users');
 
 var app = express();
 
@@ -26,12 +35,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// main routes
 app.use('/', routes);
 app.use('/comments', comments);
 app.use('/courses', courses);
 app.use('/lectures', lectures);
 app.use('/products', products);
 app.use('/users', users);
+
+// admin routes
+//app.use('/admin', admin);
+app.use('/admin/comments', adminComments);
+app.use('/admin/courses', adminCourses);
+app.use('/admin/lectures', adminLectures);
+app.use('/admin/products', adminProducts);
+app.use('/admin/users', adminUsers);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
