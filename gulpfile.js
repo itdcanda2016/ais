@@ -5,15 +5,17 @@ var config = require(__dirname + '/config/config.json')[env];
 gulp.task('createDatabase', function() {
   var Sequelize = require('sequelize');
   var pg = require('pg');
-  var env = process.env.NODE_ENV || 'development';
 
-  var dbName = config.database;
-  var username = config.username;
-  var password = config.password;
-  var host = config.host;
-
-  var conStringPri = 'postgres://' + username + ':' + password + '@' + host + '/postgres';
-  var conStringPost = 'postgres://' + username + ':' + password + '@' + host + '/' + dbName;
+  // DATABASE_URL is heroku config
+  if (process.env.DATABASE_URL) {
+    var conStringPri = process.env.DATABASE_URL;
+  } else {
+    var dbName = config.database;
+    var username = config.username;
+    var password = config.password;
+    var host = config.host;
+    var conStringPri = 'postgres://' + username + ':' + password + '@' + host + '/postgres';
+  }
 
   // connect to postgres db
   pg.connect(conStringPri, function(err, client, done) {
