@@ -10,12 +10,13 @@ var db        = {};
 
 // DATABASE_URL is heroku config
 if (process.env.DATABASE_URL) {
+  var match = process.env.DATABASE_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
   var sequelize = new Sequelize(process.env.DATABASE_URL, {
       dialect:  'postgres',
       protocol: 'postgres',
-      port:     match[4],
-      host:     match[3],
-      logging:  true
+      port: match[4],
+      host: match[3],
+      logging: true
     });
 } else {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
