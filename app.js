@@ -1,39 +1,69 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var express = require('express'),
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
+    //cookieParser = require('cookie-parser'),
+    passport = require('passport'),
+    session = require('express-session'),
+    bodyParser = require('body-parser'),
+    LocalStrategy = require('passport-local').Strategy;
 
 // main routes
-var routes = require('./routes/index');
-var comments = require('./routes/comments');
-var courses = require('./routes/courses');
-var lectures = require('./routes/lectures');
-var products = require('./routes/products');
-var users = require('./routes/users');
+var routes = require('./routes/index'),
+    comments = require('./routes/comments'),
+    courses = require('./routes/courses'),
+    lectures = require('./routes/lectures'),
+    products = require('./routes/products'),
+    users = require('./routes/users');
 
 // admin routes
 // var admin = require('./routes/admin');
-var adminComments = require('./routes/admin/comments');
-var adminCourses = require('./routes/admin/courses');
-var adminLectures = require('./routes/admin/lectures');
-var adminProducts = require('./routes/admin/products');
-var adminUsers = require('./routes/admin/users');
+var adminComments = require('./routes/admin/comments'),
+    adminCourses = require('./routes/admin/courses'),
+    adminLectures = require('./routes/admin/lectures'),
+    adminProducts = require('./routes/admin/products'),
+    adminUsers = require('./routes/admin/users');
 
 var app = express();
+
+require('./passport.js')(passport);
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
+//app.use(cookieParser());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
+
+// https://github.com/expressjs/session
+// https://github.com/mjhea0/passport-local-express4/blob/master/app.js#L28
+// app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'i love makina'
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// confirm admin role
+app.all('/admin/*', function(req, res, next) {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+  if (!req.user.isAdmin()) {
+    return res.redirect('/login');
+  }
+  next();
+});
 
 // main routes
 app.use('/', routes);
@@ -81,6 +111,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
