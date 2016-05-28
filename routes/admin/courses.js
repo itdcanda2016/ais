@@ -51,12 +51,15 @@ router.post('/', function(req, res) {
   models.Course
     .create(params)
     .then(function(course) {
-      res.status(200).redirect('/admin/courses');
+      return res.status(200).render('/');
+    })
+    .catch(function(err) {
+      return res.render('admin/courses/new', { title: 'Create', errorMessage: err.message });
     });
 });
 
 // Update course
-router.put('/:course_id', function(req, res) {
+router.post('/:course_id', function(req, res) {
   var id = req.params.course_id;
   var params = {
     name: req.body.name,
@@ -69,7 +72,10 @@ router.put('/:course_id', function(req, res) {
     .then(function(course) {
       course.update(params)
         .then(function() {
-          res.status(200).redirect('/admin/courses');
+          return res.status(200).render('/');
+        })
+        .catch(function(err) {
+          return res.render('/', { title: 'Update', errorMessage: err.message });
         });
     });
 });
@@ -79,9 +85,7 @@ router.delete('/:course_id', function(req, res) {
   var id = req.params.course_id;
 
   models.Course.destroy({
-    where: {
-      id: id
-    }
+    where: { id: id }
   })
   .then(function() {
     res.status(200).redirect('/admin/courses');

@@ -52,13 +52,16 @@ router.post('/', function(req, res) {
 
   models.Lecture
     .create(params)
-    .then(function() {
-      res.status(200).redirect('/admin/lectures');
+    .then(function(lecture) {
+      return res.status(200).render('/');
+    })
+    .catch(function(err) {
+      return res.render('admin/lectures/new', { title: 'Create', errorMessage: err.message });
     });
 });
 
 // Update lecture
-router.put('/:lecture_id', function(req, res) {
+router.post('/:lecture_id', function(req, res) {
   var id = req.params.lecture_id;
   var params = {
     name: req.body.name,
@@ -73,7 +76,10 @@ router.put('/:lecture_id', function(req, res) {
     .then(function(lecture) {
       lecture.update(params)
         .then(function() {
-          res.status(200).redirect('/admin/lectures');
+          return res.status(200).render('/');
+        })
+        .catch(function() {
+          return res.render('/', { title: 'Update', errorMessage: err.message });
         });
     });
 });
@@ -83,9 +89,7 @@ router.delete('/:lecture_id', function(req, res) {
   var id = req.params.lecture_id;
 
   models.Lecture.destroy({
-    where: {
-      id: id
-    }
+    where: { id: id }
   })
   .then(function() {
     res.status(200).redirect('/admin/lectures');

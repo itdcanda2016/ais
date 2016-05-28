@@ -1,49 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
-    <title>ITD Canada Students</title>
-    <link href="../../../stylesheets/bootstrap.min.css" rel="stylesheet">
-  </head>
-  <body>
-    <div class="container">
-      <h1>Update User</h1>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/stylesheets/normalize.css">
+  <link rel="stylesheet" href="/stylesheets/skeleton.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ITD Canada Students</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Update User</h1>
+    <% if (typeof messages !== 'undefined') { %>
+      <h4><%= messages %></h4>
+    <% } %>
+    <form accept-charset="UTF-8" action="/admin/users/<%= user.id %>" class="edit_user" id="edit_user_<%= user.id %>" method="post">
       <div class="row">
-        <div class="span6 offset3">
-          <form accept-charset="UTF-8" action="/admin/users/<%= user.id %>" class="edit_user" id="edit_user_<%= user.id %>" method="post">
-            <div class="field">
-              <label for="user_first_name">First Name</label>
-              <input id="user_first_name" name="first_name" type="text" value="<%= user.first_name %>" />
-            </div>
-            <div class="field">
-              <label for="user_last_name">Last Name</label>
-              <input id="user_last_name" name="last_name" type="text" value="<%= user.last_name %>" />
-            </div>
-            <div class="field">
-              <label for="user_email">Email</label>
-              <input id="user_email" name="email" type="text" value="<%= user.email %>" />
-            </div>
-            <div class="field">
-              <label for="user_password">Password</label>
-              <input id="user_password" name="password" type="text" value="<%= user.password %>" />
-            </div>
-            <div class="field">
-              <label for="user_profile_image_url">Profile Image URL</label>
-              <input id="user_profile_image_url" name="profile_image_url" type="text" value="<%= user.profile_image_url %>" />
-            </div>
-            <div class="field">
-              <label for="user_entered_date">Enterd Date</label>
-              <input id="user_entered_date" name="entered_date" type="text" value="<%= user.entered_date %>" />
-            </div>
-            <div class="field">
-              <label for="user_course_type">Course Type</label>
-              <input id="user_course_type" name="course_type" type="text" value="<%= user.course_type %>" />
-            </div>
-            <input class="btn btn-large btn-primary" name="commit" type="submit" value="Save changes" />
-          </form>
+        <div class="columns">
+          <label for="user_first_name">First Name</label>
+          <input id="user_first_name" name="first_name" type="text" value="<%= user.first_name %>" />
+          <label for="user_last_name">Last Name</label>
+          <input id="user_last_name" name="last_name" type="text" value="<%= user.last_name %>" />
+          <label for="user_email">Email</label>
+          <input id="user_email" name="email" type="text" value="<%= user.email %>" />
+          <label for="user_password">Password</label>
+          <input id="user_password" name="password" type="password" placeholder="Comfirm your password..." />
+          <label for="user_profile_image_url">Profile Image URL</label>
+          <input id="user_profile_image_url" name="profile_image_url" type="text" value="<%= user.profile_image_url %>" />
+          <label for="user_entered_date">Enterd Date</label>
+          <input id="user_entered_date" name="entered_date" type="date" value="<%= user.toStringEnterdDate(); %>" />
+          <label for="user_course_type">Course Type</label>
+          <input id="user_course_type" name="course_type" type="text" value="<%= user.course_type %>" />
         </div>
       </div>
-    </div>
-  </body>
+      <div class="row">
+        <input class="btn btn-large btn-primary" name="commit" type="submit" value="Save changes" />
+      </div>
+    </form>
+  </div>
+</body>
 </html>

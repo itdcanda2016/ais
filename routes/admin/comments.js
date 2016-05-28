@@ -51,8 +51,11 @@ router.post('/', function(req, res) {
 
   models.Comment
     .create(params)
-    .then(function() {
-      res.status(200).redirect('/admin/comments');
+    .then(function(comment) {
+      return res.status(200).render('/');
+    })
+    .catch(function(err) {
+      return res.render('admin/comments/new', { title: 'Create', errorMessage: err.message });
     });
 });
 
@@ -71,7 +74,10 @@ router.post('/:comment_id', function(req, res) {
     .then(function(comment) {
       comment.update(params)
         .then(function() {
-          res.status(200).redirect('/admin/comments');
+          return res.status(200).render('/');
+        })
+        .catch(function(err) {
+          return res.render('/', { title: 'Update', errorMessage: err.message });
         });
     });
 });
@@ -81,9 +87,7 @@ router.delete('/:comment_id', function(req, res) {
   var id = req.params.comment_id;
 
   models.Comment.destroy({
-    where: {
-      id: id
-    }
+    where: { id: id }
   })
   .then(function() {
     res.status(200).redirect('/admin/comments');

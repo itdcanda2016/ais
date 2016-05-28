@@ -32,7 +32,7 @@ router.get('/:user_id', function(req, res) {
 router.get('/:user_id/edit', function(req, res) {
   var id = req.params.user_id;
 
-  models.Comment.findById(id)
+  models.User.findById(id)
     .then(function(user) {
       res.status(200)
          .render('admin/users/edit', { user: user });
@@ -54,12 +54,15 @@ router.post('/', function(req, res) {
   models.User
     .create(params)
     .then(function(user) {
-      res.status(200).redirect('/admin/users');
+      return res.status(200).render('/');
+    })
+    .catch(function(err) {
+      return res.render('admin/users/new', { title: 'Create', errorMessage: err.message });
     });
 });
 
 // Update user
-router.put('/:user_id', function(req, res) {
+router.post('/:user_id', function(req, res) {
   var id = req.params.user_id;
   var params = {
     first_name: req.body.first_name,
@@ -70,12 +73,16 @@ router.put('/:user_id', function(req, res) {
     entered_date: req.body.entered_date,
     course_type: req.body.course_type,
   };
-
   models.User.findById(id)
     .then(function(user) {
       user.update(params)
         .then(function() {
-          res.status(200).redirect('/admin/users');
+          return res.status(200).render('/');
+        })
+        .catch(function(err) {
+          //return res.render('admin/users/' + id + '/edit', { messages: req.flash('error', 'Hogehoge') });
+          req.flash('error', err);
+          return res.render('admin/users/edit', { user: params, messages: req.flash('error') });
         });
     });
 });
@@ -85,9 +92,7 @@ router.delete('/:user_id', function(req, res) {
   var id = req.params.user_id;
 
   models.User.destroy({
-    where: {
-      id: id
-    }
+    where: { id: id }
   })
   .then(function() {
     res.status(200).redirect('/admin/users');

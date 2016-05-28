@@ -1,37 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
-    <title>ITD Canada Students</title>
-    <link href="../../stylesheets/bootstrap.min.css" rel="stylesheet">
-  </head>
-  <body>
-    <div class="container">
-      <h1>Create Product</h1>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/stylesheets/normalize.css">
+  <link rel="stylesheet" href="/stylesheets/skeleton.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ITD Canada Students</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Create Product</h1>
+    <form accept-charset="UTF-8" action="/admin/products" class="new_product" id="new_product" method="post">
       <div class="row">
-        <div class="span6 offset3">
-          <form accept-charset="UTF-8" action="/admin/products" class="new_product" id="new_product" method="post">
-            <div class="field">
-              <label for="product_name">Name</label>
-              <input id="product_name" name="name" type="text" />
-            </div>
-            <div class="field">
-              <label for="product_related_url">Related URL</label>
-              <input id="product_related_url" name="related_url" type="text" />
-            </div>
-            <div class="field">
-              <label for="product_image_url">Image URL</label>
-              <input id="product_image_url" name="image_url" type="text" />
-            </div>
-            <div class="field">
-              <label for="product_course_id">Course ID</label>
-              <input id="product_course_id" name="course_id" type="text" />
-            </div>
-            <input class="btn btn-large btn-primary" name="commit" type="submit" value="Create New Product" />
-          </form>
+        <div class="columns">
+          <label for="product_name">Name</label>
+          <input id="product_name" name="name" type="text" />
+          <label for="product_related_url">Related URL</label>
+          <input id="product_related_url" name="related_url" type="text" />
+          <label for="product_image_url">Image URL</label>
+          <input id="product_image_url" name="image_url" type="text" />
+          <label for="product_course_id">Course ID</label>
+          <input id="product_course_id" name="course_id" type="text" />
         </div>
       </div>
-    </div>
-  </body>
+      <div class="row">
+        <input class="btn btn-large btn-primary" name="commit" type="submit" value="Create New Product" />
+      </div>
+    </form>
+  </div>
+</body>
 </html>

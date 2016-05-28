@@ -2,7 +2,8 @@ var express = require('express'),
     path = require('path'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
-    //cookieParser = require('cookie-parser'),
+    cookieParser = require('cookie-parser'),
+    flash = require('connect-flash'),
     passport = require('passport'),
     session = require('express-session'),
     bodyParser = require('body-parser'),
@@ -32,7 +33,7 @@ require('./passport.js')(passport);
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(cookieParser());
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -47,6 +48,9 @@ app.use(session({
   secret: 'i love makina'
 }))
 
+// for error message
+app.use(flash());
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -54,13 +58,21 @@ app.use(passport.session());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// confirm login authenticated
+app.all('/*hoge*', function(req, res, next) {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+  next();
+});
+
 // confirm admin role
 app.all('/admin/*', function(req, res, next) {
   if (!req.isAuthenticated()) {
     return res.redirect('/login');
   }
   if (!req.user.isAdmin()) {
-    return res.redirect('/login');
+    return res.redirect('/');
   }
   next();
 });

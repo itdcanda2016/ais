@@ -32,7 +32,7 @@ router.get('/:product_id', function(req, res) {
 router.get('/:product_id/edit', function(req, res) {
   var id = req.params.product_id;
 
-  models.Comment.findById(id)
+  models.Product.findById(id)
     .then(function(product) {
       res.status(200)
          .render('admin/products/edit', { product: product });
@@ -50,13 +50,16 @@ router.post('/', function(req, res) {
 
   models.Product
     .create(params)
-    .then(function() {
-      res.status(200).redirect('/admin/products');
+    .then(function(product) {
+      return res.status(200).render('/');
+    })
+    .catch(function(err) {
+      return res.render('admin/products/new', { title: 'Create', errorMessage: err.message });
     });
 });
 
 // Update product
-router.put('/:product_id', function(req, res) {
+router.post('/:product_id', function(req, res) {
   var id = req.params.product_id;
   var params = {
     name: req.body.name,
@@ -69,7 +72,10 @@ router.put('/:product_id', function(req, res) {
     .then(function(product) {
       product.update(params)
         .then(function() {
-          res.status(200).redirect('/admin/products');
+          return res.status(200).render('/');
+        })
+        .catch(function(err) {
+          return res.render('/', { title: 'Update', errorMessage: err.message });
         });
     });
 });
@@ -79,9 +85,7 @@ router.delete('/:product_id', function(req, res) {
   var id = req.params.product_id;
 
   models.Product.destroy({
-    where: {
-      id: id
-    }
+    where: { id: id }
   })
   .then(function() {
     res.status(200).redirect('/admin/products');

@@ -1,37 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
-    <title>ITD Canada Students</title>
-    <link href="../../stylesheets/bootstrap.min.css" rel="stylesheet">
-  </head>
-  <body>
-    <div class="container">
-      <h1>Create Course</h1>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/stylesheets/normalize.css">
+  <link rel="stylesheet" href="/stylesheets/skeleton.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ITD Canada Students</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Create Course</h1>
+    <form accept-charset="UTF-8" action="/admin/courses" class="new_course" id="new_course" method="post">
       <div class="row">
-        <div class="span6 offset3">
-          <form accept-charset="UTF-8" action="/admin/courses" class="new_course" id="new_course" method="post">
-            <div class="field">
-              <label for="course_name">Name</label>
-              <input id="course_name" name="name" type="text" />
-            </div>
-            <div class="field">
-              <label for="course_length">Length</label>
-              <input id="course_length" name="length" type="text" />
-            </div>
-            <div class="field">
-              <label for="course_started_date">Started Date</label>
-              <input id="course_started_date" name="started_date" type="text" />
-            </div>
-            <div class="field">
-              <label for="course_ended_date">Ended Date</label>
-              <input id="course_ended_date" name="ended_date" type="text" />
-            </div>
-            <input class="btn btn-large btn-primary" name="commit" type="submit" value="Create New Course" />
-          </form>
+        <div class="columns">
+          <label for="course_name">Name</label>
+          <input id="course_name" name="name" type="text" />
+          <label for="course_length">Length</label>
+          <input id="course_length" name="length" type="text" />
+          <label for="course_started_date">Started Date</label>
+          <input id="course_started_date" name="started_date" type="date" />
+          <label for="course_ended_date">Ended Date</label>
+          <input id="course_ended_date" name="ended_date" type="date" />
+        </div>
+        <div>
+          <input class="btn btn-large btn-primary" name="commit" type="submit" value="Create New Course" />
         </div>
       </div>
-    </div>
-  </body>
+    </form>
+  </div>
+</body>
 </html>
