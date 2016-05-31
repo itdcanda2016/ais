@@ -53,7 +53,7 @@ router.post('/', function(req, res) {
   models.Lecture
     .create(params)
     .then(function(lecture) {
-      return res.status(200).render('/');
+      return res.status(200).redirect('/admin/lectures');
     })
     .catch(function(err) {
       return res.render('admin/lectures/new', { title: 'Create', errorMessage: err.message });
@@ -76,7 +76,7 @@ router.post('/:lecture_id', function(req, res) {
     .then(function(lecture) {
       lecture.update(params)
         .then(function() {
-          return res.status(200).render('/');
+          return res.status(200).redirect('/admin/lectures');
         })
         .catch(function() {
           return res.render('/', { title: 'Update', errorMessage: err.message });

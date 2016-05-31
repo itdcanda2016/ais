@@ -51,7 +51,7 @@ router.post('/', function(req, res) {
   models.Product
     .create(params)
     .then(function(product) {
-      return res.status(200).render('/');
+      return res.status(200).redirect('/admin/products');
     })
     .catch(function(err) {
       return res.render('admin/products/new', { title: 'Create', errorMessage: err.message });
@@ -72,7 +72,7 @@ router.post('/:product_id', function(req, res) {
     .then(function(product) {
       product.update(params)
         .then(function() {
-          return res.status(200).render('/');
+          return res.status(200).redirect('/admin/products');
         })
         .catch(function(err) {
           return res.render('/', { title: 'Update', errorMessage: err.message });

@@ -54,7 +54,7 @@ router.post('/', function(req, res) {
   models.User
     .create(params)
     .then(function(user) {
-      return res.status(200).render('/');
+      return res.status(200).redirect('/admin/users');
     })
     .catch(function(err) {
       return res.render('admin/users/new', { title: 'Create', errorMessage: err.message });
@@ -77,10 +77,9 @@ router.post('/:user_id', function(req, res) {
     .then(function(user) {
       user.update(params)
         .then(function() {
-          return res.status(200).render('/');
+          return res.status(200).redirect('/admin/users');
         })
         .catch(function(err) {
-          //return res.render('admin/users/' + id + '/edit', { messages: req.flash('error', 'Hogehoge') });
           req.flash('error', err);
           return res.render('admin/users/edit', { user: params, messages: req.flash('error') });
         });

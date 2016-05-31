@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <title>ITD Canada Students</title>
+    <link href="../../stylesheets/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <aside class="span4">
+          <section>
+            <h1>Articles</h1>
+            <a class="btn btn-info" method="get" href="/admin/articles/new" rel="nofollow">
+              New
+            </a>
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>User ID</th>
+                  <th>Article Type ID</th>
+                  <th>Title</th>
+                  <th>Content</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% articles.forEach(function(article) { %>
+                  <tr>
+                    <td><%= article.id %></td>
+                    <td><%= article.user_id %></td>
+                    <td><%= article.article_type_id %></td>
+                    <td><%= article.title %></td>
+                    <td><%= article.content %></td>
+                    <td>
+                      <a href="/admin/articles/<%= article.id %>/edit">
+                        Edit
+                      </a>
+                    </td>
+                    <td>
+                      <a class="btn btn-danger" method="delete" href="/admin/articles/<%= article.id %>" rel="nofollow">
+                        Delete
+                      </a>
+                    </td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </body>
+</html>

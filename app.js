@@ -11,6 +11,7 @@ var express = require('express'),
 
 // main routes
 var routes = require('./routes/index'),
+    articles = require('./routes/articles'),
     comments = require('./routes/comments'),
     courses = require('./routes/courses'),
     lectures = require('./routes/lectures'),
@@ -19,7 +20,8 @@ var routes = require('./routes/index'),
 
 // admin routes
 // var admin = require('./routes/admin');
-var adminComments = require('./routes/admin/comments'),
+var adminArticles = require('./routes/admin/articles'),
+    adminComments = require('./routes/admin/comments'),
     adminCourses = require('./routes/admin/courses'),
     adminLectures = require('./routes/admin/lectures'),
     adminProducts = require('./routes/admin/products'),
@@ -79,6 +81,7 @@ app.all('/admin/*', function(req, res, next) {
 
 // main routes
 app.use('/', routes);
+app.use('/articles', articles);
 app.use('/comments', comments);
 app.use('/courses', courses);
 app.use('/lectures', lectures);
@@ -87,6 +90,7 @@ app.use('/users', users);
 
 // admin routes
 //app.use('/admin', admin);
+app.use('/admin/articles', adminArticles);
 app.use('/admin/comments', adminComments);
 app.use('/admin/courses', adminCourses);
 app.use('/admin/lectures', adminLectures);

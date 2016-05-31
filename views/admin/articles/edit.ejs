@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/stylesheets/normalize.css">
+  <link rel="stylesheet" href="/stylesheets/skeleton.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ITD Canada Students</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Update Article</h1>
+    <form accept-charset="UTF-8" action="/admin/articles/<%= article.id %>" class="edit_article" id="edit_article_<%= article.id %>" method="post">
+      <div class="row">
+        <div class="field">
+          <label for="article_user_id">User ID</label>
+          <input id="article_user_id" name="user_id" type="text" value="<%= article.user_id %>" />
+          <label for="article_article_type_id">Article Type ID</label>
+          <input id="article_article_type_id" name="article_type_id" type="text" value="<%= article.article_type_id %>" />
+          <label for="article_title">Title</label>
+          <input id="article_title" name="title" type="text" value="<%= article.title %>" />
+          <label for="article_content">Content</label>
+          <input id="article_content" name="content" type="text" value="<%= article.content %>" />
+        </div>
+      </div>
+      <div>
+        <input class="btn btn-large btn-primary" name="commit" type="submit" value="Save changes" />
+      </div>
+    </form>
+  </div>
+</body>
+</html>

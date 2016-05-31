@@ -1,14 +1,14 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Product = sequelize.define('Product', {
-    name: DataTypes.STRING,
-    related_url: DataTypes.STRING,
-    image_url: DataTypes.STRING,
-    course_id: DataTypes.INTEGER
+  var Article = sequelize.define('Article', {
+    user_id: DataTypes.INTEGER,
+    article_type_id: DataTypes.INTEGER,
+    title: DataTypes.STRING,
+    content: DataTypes.TEXT
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+
       }
     },
     instanceMethods: {
@@ -17,5 +17,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Product;
+  return Article;
 };

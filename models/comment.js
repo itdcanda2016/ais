@@ -11,6 +11,11 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         // associations can be defined here
       }
+    },
+    instanceMethods: {
+      isYours: function(user) {
+        return this.user_id == user.id;
+      }
     }
   });
   return Comment;
